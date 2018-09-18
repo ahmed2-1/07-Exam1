@@ -2,8 +2,8 @@
 Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Tom Ahmed.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -88,23 +88,43 @@ def problem3(point, length, delta, window):
       :type window:  rg.RoseWindow
     """
     # --------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
-    # TODO (continued):  IMPORTANT: Use this ITERATIVE ENHANCEMENT PLAN:
-    # TODO (continued):    1. Make the sole VERTICAL line appear,
-    # TODO (continued):         with thickness 3.
-    # TODO (continued):    2. Make the FIRST horizontal line appear.
-    # TODO (continued):    3. Make MORE horizontal lines appear,
-    # TODO (continued):         each delta below the previous one.
-    # TODO (continued):    4. Make each successive horizontal line
-    # TODO (continued):         20 pixels longer than the previous one.
-    # TODO (continued):    5. Make the right NUMBER of horizontal lines.
-    # TODO (continued):    6. Make the horizontal lines each have thickness 3
-    # TODO (continued):         and colors per the specified pattern.
+    # DONE: 2. Implement and test this function.
+    # TO_DO (continued):  IMPORTANT: Use this ITERATIVE ENHANCEMENT PLAN:
+    # TO_DO (continued):    1. Make the sole VERTICAL line appear,
+    # TO_DO (continued):         with thickness 3.
+    # TO_DO (continued):    2. Make the FIRST horizontal line appear.
+    # TO_DO (continued):    3. Make MORE horizontal lines appear,
+    # TO_DO (continued):         each delta below the previous one.
+    # TO_DO (continued):    4. Make each successive horizontal line
+    # TO_DO (continued):         20 pixels longer than the previous one.
+    # TO_DO (continued):    5. Make the right NUMBER of horizontal lines.
+    # TO_DO (continued):    6. Make the horizontal lines each have thickness 3
+    # TO_DO (continued):         and colors per the specified pattern.
     #          Tests have been written for you (above).
     # --------------------------------------------------------------------------
-
+    vert = rg.Line(point, rg.Point(point.x, point.y+length))
+    vert.thickness = 3
+    counter = 1
+    for i in range((length//delta)+1):
+        horiz = rg.Line(rg.Point(point.x, point.y+(delta*i)), rg.Point(point.x + (20*i) + length, point.y+(delta*i)))
+        horiz.thickness = 3
+        if counter == 1:
+            horiz.color = 'magenta'
+        elif counter == 2:
+            horiz.color = 'cyan'
+        elif counter == 3:
+            horiz.color = 'spring green'
+        elif counter > 3:
+            horiz.color = 'magenta'
+            counter = 1
+        horiz.attach_to(window)
+        counter += 1
+    vert.attach_to(window)
+    window.render()
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
+
+
 main()
